@@ -1,9 +1,9 @@
 class Animals:
-    def __init__(self,name,age):
+    def __init__(self,name,age,health=0,happiness=0):
         self.name=name
         self.age=age
-        self.health=50
-        self.happiness=50
+        self.health=health
+        self.happiness=happiness
     def display_info(self):
         print(f"name:{self.name},age:{self.age},health:{self.health},happiness:{self.happiness}")
     def feed(self):
@@ -45,17 +45,16 @@ class Zoo:
     def __init__(self,zoo_name):
         self.animals = []
         self.name =zoo_name
-    def add_lion(self,name):
-        self.animals.append(Lion(name,5))
-    def add_tiger(self,name):
-        self.animals.append(Tiger(name,3))
+    def add_animals(self,animal):
+        self.animals.append(animal)
     def print_all_info(self):
         print("-"*30,self.name,"-"*30)
         for animal in self.animals:
             animal.display_info()
+
 zoo1=Zoo("John's Zoo")
-zoo1.add_lion("Nala")
-zoo1.add_lion("simba")
-zoo1.add_tiger("Rajah")
-zoo1.add_tiger("shere khan")
+zoo1.add_animals(Lion('semba',10))
+#zoo1.add_lion("simba")
+#zoo1.add_tiger("Rajah")
+#zoo1.add_tiger("shere khan")
 zoo1.print_all_info()
