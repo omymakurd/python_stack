@@ -13,6 +13,6 @@ def say_hi(name):
     return f"Hi {name}"
 @app.route('/repeat/<int:num>/<word>')
 def repeat_word(num,word):
-    return (word + ' ') * num
+    return (word + ' \n') * num
 if __name__ == '__main__':
     app.run(debug=True)

@@ -9,5 +9,8 @@ def checker_height(height):
 @app.route('/<int:width>/<int:height>')
 def checker_custom(width,height):
     return render_template('index.html',width=width,height=height,color1='red',color2='black')
+@app.route('/<int:width>/<int:height>/<string:color1>/<string:color2>')
+def checker_custom2(width,height,color1,color2):
+    return render_template('index.html',width=width,height=height,color1=color1,color2=color2)
 if __name__=='__main__':
     app.run(debug=True,port=5050)

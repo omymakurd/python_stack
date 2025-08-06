@@ -54,7 +54,7 @@ class Zoo:
 
 zoo1=Zoo("John's Zoo")
 zoo1.add_animals(Lion('semba',10))
-#zoo1.add_lion("simba")
-#zoo1.add_tiger("Rajah")
-#zoo1.add_tiger("shere khan")
+
+zoo1.animals[0].feed()
+
 zoo1.print_all_info()
