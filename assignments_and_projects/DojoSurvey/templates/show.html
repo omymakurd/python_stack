@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main">
+    <h1>submitted Info</h1>
+    <p>Name: {{name_on_template}}</p>
+    <p>Dojo Location:{{location_on_template}}</p>
+    <p>Favorite Language:{{language_on_template}}</p>
+    <p>Comment:{{comment_on_template}}</p>
+    <form action="/" class="btn">
+       <button type="submit" > Go Back</button>
+    </form>
+    </div>
+</body>
+</html>
