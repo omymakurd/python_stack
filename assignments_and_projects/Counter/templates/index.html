@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <p> {{count}} items</p>
+    <a href="/add2"> Add +2</a>
+    <a href="/reset">Reset</a>
+    <a href="/destroy_session">Destroy Session</a>
+    <form action="increment" method="POST">
+        <input type="number" name="value">
+        <button type="submit">Increment by value</button>
+    </form>
+</body>
+</html>
