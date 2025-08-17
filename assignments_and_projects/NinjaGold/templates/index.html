@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Your Gold: {{ gold }} </h2>
+    <h3>Moves: {{ moves}}</h3>
+    <div class="submain">
+        <div class="box">
+        <form action="/process_money" method="post" {% if game_over %} class="disabled"{% endif %}>
+            <h1>Farm</h1>
+            <h2>earn (10-20 golds) </h2>
+            <input type="hidden" name="building" value="farm">
+            <input type="submit"  value="Find Gold at farm">
+        </form>
+        </div>
+        <div class="box" >
+         <form action="/process_money" method="post" {% if game_over %} class="disabled"{% endif %}>
+            <h1>cave</h1>
+            <h2> earn (5-10 golds) </h2>
+            <input type="hidden" name="building" value="cave">
+            <input type="submit"  value="Find Gold at cave">
+
+        </form>
+        </div>
+        <div class="box" >
+         <form action="/process_money" method="post" {% if game_over %} class="disabled"{% endif %}>
+            <h1>House</h1>
+            <h2> earn (2-5 golds) </h2>
+            <input type="hidden" name="building" value="house">
+            <input type="submit"  value="Find Gold at house">
+
+        </form>
+        </div>
+        <div class="box" >
+         <form action="/process_money" method="post" {% if game_over %} class="disabled"{% endif %}>
+            <h1>Casino</h1>
+            <h2> earn (0-50 golds) </h2>
+            <input type="hidden" name="building" value="casino">
+            <input type="submit"  value="Find Gold at casino">
+
+        </form>
+    </div>
+    </div>
+    {% if game_over %}
+       <form action="/reset" method="get">
+           <input type="submit" value="Reset Game">
+       </form>
+    {% endif %}
+    <h3> Activities:</h3>
+    <div class="activities">
+        {% for activity in activities %}
+           <p class="{{ activity.class }}">{{activity.text}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
