@@ -2,6 +2,7 @@ from flask import Flask,render_template,redirect,request,session
 import random
 app=Flask(__name__)
 app.secret_key='secret_key'
+leaderboard=[]
 @app.route('/')
 def index():
     if 'randomnumber' not in session:
@@ -29,5 +30,17 @@ def reset():
     session.pop('randomnumber',None)
     session.pop('attempts',None)
     return redirect('/')
+
+@app.route('/save_name',methods=['POST'])
+def save_name():
+    name=request.form.get('name','Anonymous')
+    attempts_used=5-max(session.get('attempts',0),0) 
+    leaderboard.append({'name':name,'attempts':attempts_used})
+    session.pop('randomnumber',None)
+    session.pop('attempts',None)
+    return redirect('/leaderboard')
+@app.route('/leaderboard')
+def show_leaderboard():
+    return render_template("leaderboard.html",leaderboard=leaderboard)
 if __name__=='__main__':
     app.run(debug=True,port=5369)
