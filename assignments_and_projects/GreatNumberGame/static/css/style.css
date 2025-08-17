@@ -1,0 +1,35 @@
+.box{
+    padding-top: 70px;
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+}
+.wrong{
+    background-color: #e20f0f;
+    color: white;
+    align-items: center;
+    margin: 0 auto;
+}
+.correct{
+    background-color: green;
+    color: white;
+}
+.main{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    border: 2px solid black ;
+    text-align: center;
+    padding-top: 50px;
+}
+button{
+    margin-top: 20px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px black;
+    background-color: aquamarine;
+}
+input{
+    border: 2px solid black;
+    height: 25px;
+}

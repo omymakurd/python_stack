@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main">
+    <h1>Welcom to the Great Number Game!</h1><br>
+    <h2> I am thinking of a number between 1 and 100</h2><br>
+    {% if message %}
+        {% if "Too low" in message   or "Too high" in message  %}
+          <div class="box wrong">{{ message }}</div>
+        {% elif message=="correct" %}
+            <div class="box correct"> {{ message }}</div>
+            <a href="/reset">play Again</a>
+        {% elif "Game Over" in message %}
+            <div class="box wrong">{{ message }}</div>
+            <a href="/reset">Try Again</a>
+        {% endif %}
+    {% endif %}
+    
+    <br>
+    <br>
+    {% if not message or  ( message!="correct" and ( message is not none and "Game Over" not in message )) %}
+        <form action="/guess" method="POST">
+        <input type="number" name="guess"><br>
+        <button type="submit">submit</button>
+    </form>
+    {% endif %}
+    </div>
+</body>
+</html>
