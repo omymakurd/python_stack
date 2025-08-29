@@ -43,13 +43,14 @@ join actor
 on actor.actor_id=film_actor.actor_id
 where film_actor.film_id=369
 ----------------------------------------------------------------
-select film.title,film.description,film.release_year,film.rating,film.special_features,category.name
+select film.title,film.description,film.release_year,film.rating,film.special_features,category.name,film.rental_rate
 from film
 join film_category
 on film.film_id =film_category.film_id
 join category
 on category.category_id=film_category.category_id
 where category.name ='Drama'
+and film.rental_rate=2.99
 -------------------------------------------------------
 select film.title,film.description,film.release_year,film.rating,film.special_features,category.name,concat( actor.first_name,' ',actor.last_name) as name
 from film
