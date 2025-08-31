@@ -4,12 +4,10 @@ def index(request):
 def create_user(request):
     name=request.POST['name']
     email=request.POST['email']
-    context={
-        "name":name,
-        "email":email
-    }
+    request.session['name']=name
+    request.session['email']=email
+    
 
-    return redirect("/users")
-def success(request):
     return render(request,"show.html")
+
 # Create your views here.

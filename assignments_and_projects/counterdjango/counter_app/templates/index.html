@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Counter</h1>
+    <p>{{ request.session.counter }} times</p>
+    <form action="destroy_session" method="get">
+        <button type="submit"> reset counter</button>
+
+    </form>
+    <form action="add2" method="get">
+        <button type="submit"> Add2</button>
+        
+    </form>
+    <form action="addnumber" method="post">
+        {% csrf_token %}
+        <input type="number" name="increment">
+        <button type="submit">Add Custom</button>
+    </form>
+</body>
+</html>
