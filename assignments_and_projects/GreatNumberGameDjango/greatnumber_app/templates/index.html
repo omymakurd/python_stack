@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="main">
+    <h1>Welcome to Great Number Game!</h1>
+    <h2>I am thinking of anumber between 1 and 100</h2>
+    <p>take a guess!</p>
+    <form action="guess" method="post">
+        {% csrf_token %}
+        <input type="number" name="guess">
+        <button type="submit"> Submit</button>
+    </form>
+    {% if request.session.result %}
+        {% if request.session.result and "Correct" in request.session.result  %}
+            <div class="box" style=" background-color: {{ request.session.color}}"> {{ request.session.result }}</div> 
+           <form action="/leaderboard" method="POST">
+             {% csrf_token %}
+            <label for="name">Your Name</label>
+            <input type="text" name="name">
+            <button type="submit">submit</button>
+            </form>
+             <a href="/reset">play again</a>
+             <a href="/leaderboard"> Leaderboard</a>
+        {% elif request.session.result  %}
+            <div class="box" style=" background-color: {{ request.session.color}}"> {{ request.session.result }}</div> 
+        {% endif %}
+        {% if "Lose" in request.session.result   %}
+           <a href="/reset">Try Again</a>  
+        {% endif %}
+    {% endif %}
+    </div>
+</body>
+</html>
