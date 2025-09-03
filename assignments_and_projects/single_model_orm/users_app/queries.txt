@@ -1,0 +1,29 @@
+
+user1 = Users.objects.create(first_name='ahmed',last_name='alsawwaf',email_address='alsawwaf@gmail.com',age = 20)
+user2 = Users.objects.create(first_name='omayma',last_name='alkurd',email_address='omayma@gmail.com',age = 21)
+user3 = Users.objects.create(first_name='mohammed',last_name='essa',email_address='essa@gmail.com',age = 22)
+
+all_users = Users.objects.all()
+print(all_users.values())
+
+last_user = Users.objects.last()
+print(last_user.values())
+
+first_user = Users.objects.first()
+print(first_user.values())
+
+change_user_name = Users.objects.get(id=3)
+change_user_name.last_name = 'Pancakes'
+change_user_name.save()
+print(all_users.values())
+
+deleted_user = Users.objects.get(id=3)
+deleted_user.delete()
+print(all_users.values())
+
+asd_order = Users.objects.all().order_by('first_name')
+print(all_users.values())
+
+desc_order = Users.objects.all().order_by('-first_name')
+print(all_users.values())
+
