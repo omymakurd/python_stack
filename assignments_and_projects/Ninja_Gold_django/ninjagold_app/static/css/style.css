@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: darkblue;
+}
+
+form {
+    margin: 10px 0;
+}
+.activities {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    height: 200px;
+    overflow-y: scroll;
+}
+.box{
+    border: 2px solid black;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.submain{
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
