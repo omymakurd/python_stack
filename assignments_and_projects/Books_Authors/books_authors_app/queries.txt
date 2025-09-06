@@ -1,0 +1,61 @@
+from books_authors_app import *
+>>> book1=Books.objects.create(title="C sharp",desc="An in-depth guide to C# programming language, covering object-oriented concepts, .NET framework, and modern development practices.")
+
+>>> book2=Books.objects.create(title="Java",desc="A comprehensive introduction to Java programming, focusing on object-oriented principles, cross-platform development, and enterprise applications.")
+
+>>> book3=Books.objects.create(title="Python",desc="An easy-to-learn programming language with a focus on readability, rapid development, and powerful libraries for web development, data science, and automation.")
+
+>>> book4=Books.objects.create(title="PHP",desc="A popular server-side scripting language designed for web development, powering dynamic websites and widely used with MySQL and content management systems.")
+
+>>> book5=Books.objects.create(title="Ruby",desc="A dynamic, open-source programming language focused on simplicity and productivity, well known for the Ruby on Rails web framework.")
+
+>>> author1=Authors.objects.create(first_name="Jane",last_name="Austen")
+>>> author2=Authors.objects.create(first_name="Emily",last_name="Dickinson")
+>>> author3=Authors.objects.create(first_name="Fyodor",last_name="Dostoevesky")
+>>> author4=Authors.objects.create(first_name="William",last_name="Shakespeare")
+>>> author5=Authors.objects.create(first_name="Lau",last_name="Tzu")
+
+books_authors_app.models.Books.DoesNotExist: Books matching query does not exist.
+>>> csharpbook=Books.objects.get(id=1)
+>>> csharpbook.title='C#'
+>>> csharpbook.save()
+>>> author4 = Authors.objects.get(id=4)
+>>> author4.first_name="Bill"
+>>> author4.save()
+
+
+ book1=Books.objects.get(title="C#")
+>>> book2=Books.objects.get(title="Java")
+>>> author1=Authors.objects.first()
+>>> author1.books.add(book1,book2)
+
+book1=Books.objects.get(id=1)
+>>> book2=Books.objects.get(id=2)
+>>> book3=Books.objects.get(id=3)
+ auther2=Authors.objects.get(id=2)
+>>> auther2.books.add(book1,book2,book3)
+
+author3=Authors.objects.get(id=3)
+>>> author3.books.add(book1,book2,book3,book4)
+
+ author4=Authors.objects.get(id=4)
+>>> all_books=Books.objects.all()
+author4.books.add(*all_books)
+
+ book3=Books.objects.get(id=3)
+>>> allauthersbook3=book3.authors.all()
+
+ book3=Books.objects.get(id=3)
+>>> first_author=book3.authors.first()
+>>> book3.authors.remove(first_author)
+
+
+ book2=Books.objects.get(id=2)
+>>> auther5=Authors.objects.get(id=5)
+>>> auther5.books.add(book2)
+
+>>> auther3=Authors.objects.get(id=3)
+>>> booksauthor3=auther3.books.all
+
+>>> book5=Books.objects.get(id=5)
+>>> authorbook5=book5.authors.all()
