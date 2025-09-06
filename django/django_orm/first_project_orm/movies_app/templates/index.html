@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show movies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Relese data</th>
+      <th scope="col">duration</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+      {% for movie in all_the_movies %}
+      <tr>
+      <th scope="row">{{ movie.id }}</th>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.description }}</td>
+      <td>{{ movie.relese_data }}</td>
+      <td>{{ movie.duration }}</td>
+      </tr>
+      {% endfor %}
+    
+    
+  </tbody>
+</table>
+<h1> Add a user</h1>
+<form method="POST" class="p-3 border rounded shadow bg-light" action="add_user">
+  {% csrf_token %}
+  
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Enter movie title">
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="relese_data" class="form-label">Release Date</label>
+    <input type="date" class="form-control" id="relese_data" name="relese_data">
+  </div>
+
+  <div class="mb-3">
+    <label for="duration" class="form-label">Duration (minutes)</label>
+    <input type="number" class="form-control" id="duration" name="duration" placeholder="Enter duration">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Movie</button>
+</form>
+</body>
+</html>

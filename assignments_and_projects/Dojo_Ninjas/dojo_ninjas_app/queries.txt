@@ -1,0 +1,43 @@
+python manage.py shell
+from dojo_ninjas_app.models import *
+dojo1=Dojos.objects.create(name="Dragon Dojo",city="Tokyo",stat="JP")
+ dojo2=Dojos.objects.create(name="Tiger Dojo",city="Seoul",stat="KR")
+dojo3=Dojos.objects.create(name="Phoenis Dojo",city="Bangkok",stat="TH")
+ delete_user=Dojos.objects.get(id=1)
+ delete_user.delete()
+ delete_user=Dojos.objects.get(id=2)
+ delete_user.delete()
+ delete_user=Dojos.objects.get(id=3)
+>>> delete_user.delete()
+dojo1=Dojos.objects.create(name="Dragon Dojo",city="Tokyo",stat="JP")
+ dojo2=Dojos.objects.create(name="Tiger Dojo",city="Seoul",stat="KR")
+dojo3=Dojos.objects.create(name="Phoenis Dojo",city="Bangkok",stat="TH")
+>>> dojo1=Dojos.objects.get(id=4)
+ninja1=Ninjas.objects.create(dojo=dojo1,first_name="Ryu",last_name="Hayabusa")
+ ninja2=Ninjas.objects.create(dojo=dojo1,first_name="Hanoza",last_name="mufune")
+ ninja3=Ninjas.objects.create(dojo=dojo1,first_name="Kasumi",last_name="Hattori")
+dojo2=Dojos.objects.get(id=5)
+
+>>> ninja1=Ninjas.objects.create(dojo=dojo2,first_name="Ayame",last_name="Kobayashi")
+>>> ninja2=Ninjas.objects.create(dojo=dojo2,first_name="Takeshi",last_name="Kurosawa")
+>>> ninja3=Ninjas.objects.create(dojo=dojo2,first_name="Kenji",last_name="Tanaka")
+
+>>> dojo3=Dojos.objects.get(id=6)
+>>> ninha1=Ninjas.objects.create(dojo=dojo3,first_name="Miyuki",last_name="Fujimoto")
+>>> ninha2=Ninjas.objects.create(dojo=dojo3,first_name="Naoko",last_name="Saito")
+>>> ninha3=Ninjas.objects.create(dojo=dojo3,first_name="Hiroshi",last_name="Yamamoto")
+
+
+>>> first_dojo=Dojos.objects.first()
+>>> ninjas_first_dojo=first_dojo.ninjas.all()
+
+>>> last_dojo=Dojos.objects.last()
+>>> ninjas_last_dojo=last_dojo.ninjas.all()
+
+
+
+>>> last_ninja=Ninjas.objects.last()
+>>> last_ninja_dojo=last_ninja.dojo
+
+>>> dojo4=Dojos.objects.create(name="Lotus Dojo",city="sapporo",stat="JP",desc="Known for its disciplined training and focus on inner strength")
+>>>
