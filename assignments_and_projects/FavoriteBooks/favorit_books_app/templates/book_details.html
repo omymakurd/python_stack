@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% if request.session.first_name %}
+    <div class="header">
+        <h1>Welcome, {{ request.session.first_name }}! </h1>
+        
+        <form action="/logout" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout">Logout</button>
+        </form>
+        {% endif %}
+
+    </div>
+    <div class="main">
+        <div class="left-side">
+            {% if book.uploded_by.id == user.id %}
+
+            <form action="{% url 'update_book' book.id %}" method="POST">
+                {% csrf_token %}
+
+                <h1> <input type="text" name="title" value="{{ book.title }}"></h1>
+                <br>
+
+                <p>Added by: {{ book.uploded_by.first_name }} {{ book.uploded_by.last_name }}</p>
+                <p>Added on: {{ book.created_at }}</p>
+                <p>Last updated on: {{ book.updated_at }}</p>
+
+                <label>Description:</label>
+                <textarea name="desc">{{ book.desc }}</textarea>
+                <br>
+
+                <button type="submit">Update</button>
+            </form>
+
+            <form action="{% url 'delete_book' book.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete">Delete</button>
+            </form>
+            {% else %}
+
+            <h1>{{ book.title }}</h1>
+            <p>Added by: {{ book.uploded_by.first_name }} {{ book.uploded_by.last_name }}</p>
+            <p>Added on: {{ book.created_at }}</p>
+            <p>Last updated on: {{ book.updated_at }}</p>
+            <p>Description: {{ book.desc }}</p>
+            {% endif %}
+        </div>
+
+        <div class="right-side">
+            <h3>Users Who Like This Book:</h3>
+            <ul>
+                {% for liker in users_who_like %}
+                <li>
+                    {{ liker.first_name }} {{ liker.last_name }}
+                    {% if liker.id == user.id %}
+                    <a href="{% url 'unfavorite_book' book.id %}">Un-Favorite</a>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li>No one likes this book yet.</li>
+                {% endfor %}
+            </ul>
+            {% if user not in users_who_like %}
+            <a href="{% url 'add_to_favorite' book.id %}">Add to Favorites</a>
+            {% endif %}
+        </div>
+
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert 
+      {% if message.tags == 'error' %} alert-danger
+      {% elif message.tags == 'success' %} alert-success
+      {% else %} alert-info {% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>

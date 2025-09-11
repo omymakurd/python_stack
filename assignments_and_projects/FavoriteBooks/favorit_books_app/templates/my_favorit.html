@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>My Favorites</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome, {{ user.first_name }}! </h1>
+        <form action="/logout" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <h2>My Favorite Books</h2>
+    {% if fav_books %}
+        <ul>
+            {% for book in fav_books %}
+                <li>
+                    <a href="/books/{{ book.id }}">{{ book.title }}</a>
+                    (added by {{ book.uploded_by.first_name }} {{ book.uploded_by.last_name }})
+                    <a href="/unfavorite/{{ book.id }}">Un-Favorite</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no favorite books yet.</p>
+    {% endif %}
+
+    <a href="/books">Back to All Books</a>
+</body>
+</html>
