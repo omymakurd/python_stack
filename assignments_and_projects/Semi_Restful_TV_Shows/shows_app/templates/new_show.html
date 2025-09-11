@@ -42,6 +42,13 @@
           <button type="submit" class="btn btn-success">✅ Create</button>
           <a href="/shows" class="btn btn-info text-white">📋 Back to All Shows</a>
         </div>
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </form>
     </div>
   </div>

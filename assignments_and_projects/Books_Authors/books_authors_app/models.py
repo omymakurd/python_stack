@@ -15,5 +15,4 @@ class Authors(models.Model):
 
 
 
-
 # Create your models here.
