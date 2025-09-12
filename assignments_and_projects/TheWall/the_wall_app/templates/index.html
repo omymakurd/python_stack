@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodingDojo wall</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% if request.session.first_name %}
+    <div class="header">
+        <h1> CodingDojo Wall</h1>
+        <h3>Welcome, {{ request.session.first_name }}! </h3>
+
+        <form action="/logout" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout">Logout</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <div class="main">
+
+        <h2>Post a message</h2>
+        <form action="/create_message" method="post">
+            {% csrf_token %}
+            <textarea name="message" placeholder="Write your message here..."></textarea>
+            <div class="btn-post">
+                <button type="submit" class="post-message"> Post a message</button>
+            </div>
+        </form>
+
+
+        <div class="message-list">
+            {% for msg in all_messages %}
+            <div class="message-block">
+                <p>
+                    <strong>{{ msg.user.first_name }} {{ msg.user.last_name }}</strong> -
+                    {{ msg.created_at|date:"F jS Y" }}
+                </p>
+                <p>
+                    {% if msg.user.id == request.session.user_id %}
+                <form action="{% url 'delete_message' msg.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-msg">Delete Message</button>
+                </form>
+                {% endif %}
+
+                </p>
+                <p>{{ msg.message }}</p>
+
+
+                <div class="comments">
+                    {% for comment in msg.comments.all %}
+                    <div class="comment">
+                        <p>
+                            <strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong> -
+                            {{ comment.created_at|date:"F jS Y" }}
+                        </p>
+
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                    {% empty %}
+                    <p class="no-comments">No comments yet.</p>
+                    {% endfor %}
+                </div>
+
+
+                <form action="{% url 'add_comment' msg.id %}" method="post">
+                    {% csrf_token %}
+                    <textarea name="comment" placeholder="Write your comment here..." required></textarea>
+                    <div class="btn-post">
+                        <button type="submit" class="post-message">Comment</button>
+                    </div>
+                </form>
+
+                <hr>
+            </div>
+            {% empty %}
+            <p>No messages yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert 
+      {% if message.tags == 'error' %} alert-danger
+      {% elif message.tags == 'success' %} alert-success
+      {% else %} alert-info {% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>
